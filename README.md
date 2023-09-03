@@ -23,7 +23,7 @@ Aplicaciones de uso: Además de determinar la posición, el GPS también puede s
 
 ### ¿Cómo obtienen los _smartphones_ las coordenadas GPS?
 
-Los smartphones modernos utilizan una combinación de sensores y tecnologías para obtener las coordenadas GPS. La determinación de la posición a través de estas técnicas se llama posicionamiento GNSS (Sistema Global de Navegación por Satélite). GPS es el sistema GNSS desarrollado por Estados Unidos, pero hay otros sistemas similares en funcionamiento o en desarrollo, como GLONASS (Rusia), Galileo (Unión Europea) y BeiDou (China).
+Los _smartphones_ modernos utilizan una combinación de sensores y tecnologías para obtener las coordenadas GPS. La determinación de la posición a través de estas técnicas se llama posicionamiento GNSS (Sistema Global de Navegación por Satélite). GPS es el sistema GNSS desarrollado por Estados Unidos, pero hay otros sistemas similares en funcionamiento o en desarrollo, como GLONASS (Rusia), Galileo (Unión Europea) y BeiDou (China).
 
 Los _smartphones_ obtienen las coordenadas GPS de la siguiente manera:
 
@@ -70,9 +70,9 @@ La API de Google para utilización de mapas (Google Maps API) existe desde el a�
 
 Una vez que tienes tu acceso funcional a GCP, necesitas crear tus propias credenciales para usar las APIs de Google, incluyendo Google Maps API. Los pasos para realizar esto los encuentras en las siguientes fuentes:
 
-* [https://developers.google.com/maps/documentation/javascript/cloud-setup](Set up your Google Cloud Project): Guía oficial de Google para comenzar a usar GCP.
-* [https://developers.google.com/maps/get-started](Getting started with Google Maps Platform): Guía oficial de Google para comenzar a usar la API de Google Maps.
-* [https://www.youtube.com/watch?v=eycjk3APuoI](How to Use Google Maps API (YouTube)): Este vídeo no oficial te mostrará cómo habilitar la API de Google Maps y cómo crear una API key para usarla.
+* [Set up your Google Cloud Project): Guía oficial de Google para comenzar a usar GCP](https://developers.google.com/maps/documentation/javascript/cloud-setup).
+* [Getting started with Google Maps Platform): Guía oficial de Google para comenzar a usar la API de Google Maps.](https://developers.google.com/maps/get-started)
+* [How to Use Google Maps API (YouTube)): Este vídeo no oficial te mostrará cómo habilitar la API de Google Maps y cómo crear una API key para usarla](https://www.youtube.com/watch?v=eycjk3APuoI).
 
 Importante: Existen buenas prácticas de seguridad para generar y usar API keys que aplican a GCP y a otras plataformas con APIs que puedan requerir en el futuro. Las buenas prácticas para uso de API keys con GCP las encuentran en [https://developers.google.com/maps/api-security-best-practices](https://developers.google.com/maps/api-security-best-practices).
 
@@ -88,24 +88,30 @@ Es importante notar que toda variable de entorno accesible desde el código de R
 process.env.REACT_APP_NOT_SECRET_CODE
 ```
 
-Se debe tener cuidado pues *esta no es una solución robusta desde el punto de vista de la seguridad*, pues el browser termina conociendo la API key y usándola en todas las peticiones. Mantener la API key completamente oculta del frontend requiere que el backend haga las peticiones a GCP, y que toda petición del frontend a GCP pase a través del backend. La explicación y solución a este problema [la encuentran aquí](https://stackoverflow.com/questions/48699820/how-do-i-hide-an-api-key-in-create-react-app).
+Se debe tener cuidado pues *esta no es una solución robusta desde el punto de vista de la seguridad*, dado que el browser termina conociendo la API key y usándola en todas las peticiones. Mantener la API key completamente oculta del frontend requiere que el backend haga las peticiones a GCP, y que toda petición del frontend a GCP pase a través del backend. La explicación y solución a este problema [la encuentran aquí](https://stackoverflow.com/questions/48699820/how-do-i-hide-an-api-key-in-create-react-app).
  
 ### API de Google Maps
 
 El uso básico de la API de Google Maps está cubierto en la clase 5 del curso. Aquí te entregamos una serie de referencias útiles que puedes consultar para guiar tu trabajo:
 
 * [Conceptos de la API de Google Maps](https://developers.google.com/maps/documentation/javascript/basics): Explica sobre los tipos de mapas disponibles, los mapas y coordenadas, localización en los mapas, versionamiento de la API, parámetros en URL, mejores prácticas, y uso de métodos asíncronos a través de promesas de ES6+.
-* [Google Map React](https://www.npmjs.com/package/google-map-react): Módulo no oficial, vigente actualmente, para integrar Google Maps con su aplicación React. Documentación disponible en [sitio en GitHub](https://github.com/google-map-react/google-map-react).
+* [React Google Maps](https://www.npmjs.com/package/react-google-maps?activeTab=readme): Alternativa #1. Módulo no oficial que permite la integración de Google Maps con su aplicación React. Ejemplo de uso [disponible en codesandbox.io](https://codesandbox.io/s/react-google-maps-example-forked-dr2hjs?file=/index.js). En línea 19, cambiar API key por la propia. La documentación está [disponible aquí](https://tomchentw.github.io/react-google-maps/). La utilización de este módulo requiere conocer una técnica en React conocida como _Higher Order Components_ (HOC). Para mayor información sobre HOCs y su uso en apliaciones React, pueden ver [aquí una explicación simple](https://gist.github.com/claudio-alvarez/d2f00242e0bacad1e6dadf5fc8df6aad), y acá una [guía más avanzada escrita por Robin Wieruch](https://www.robinwieruch.de/react-higher-order-components/).
+* [Google Map React](https://www.npmjs.com/package/google-map-react): Alternativa #2. Módulo no oficial, vigente actualmente, para integrar Google Maps con su aplicación React. Documentación disponible en [sitio en GitHub](https://github.com/google-map-react/google-map-react).
+
+Nota: En las instrucciones de instalación, considerar que el proyecto en que Uds están trabajando (desde entrega anterior) utiliza NPM para instalación de paquetes, por lo que pueden omitir las instrucciones para usar Yarn. 
 
 ## Objetivos de la Entrega del Proyecto 1.4
 
-1. En vista de creación de destino de la aplicación Travel Log, desplegar mapa de Google Maps.
-2. Permitir encontrar ubicación en mapa ingresando su nombre en un input de tipo texto.
-3. Permitir encontrar ubicación en mapa desde coordenadas GPS actuales mediante Geolocation API.
-4. Crear un "_placemark_" (marcador de lugar) en el mapa para el lugar encontrado. El marcador debe quedar asociado al destino en la aplicación Travel Log y guardado en la base de datos.
+Los objetivos de esta entrega son dar funcionalidad de geolocalización y mapas a la aplicación Travel Log. Deberán continuar trabajando en el repositorio de la entrega 3, extendiéndolo con la funcionalidad necesaria. Además, podrán modificar la aplicación de backend si lo estiman necesario. Vean la sección siguiente para mayores detalles.
 
+1. [1.0] En componente de creación de destino (`Destination`) de la aplicación Travel Log, desplegar mapa de Google Maps utilizando componentes de React.
+2. [1.0] Permitir encontrar ubicación en mapa ingresando su nombre en un input de tipo texto, parte de un componente React - posiblemente, del mismo componente que despliega el mapa.
+3. [1.0] Como alternativa a ingresar el nombre de un lugar en campo de texto, permitir encontrar ubicación en mapa desde coordenadas GPS actuales mediante Geolocation API, al presionar un botón.
+4. [1.0] Crear un "_placemark_" (marcador de lugar) en el mapa para el lugar encontrado. El marcador debe quedar asociado al destino en la aplicación Travel Log, asociado a algún viaje (el que ustedes definan), y guardado en la base de datos.
+5. [1.0] Al desplegar un viaje, dar la posibilidad de ver el mapa del viaje mostrando todos los destinos marcados en el mapa (placemarks).
+6. [1.0] Al hacer tap en uno de los placemarks, permitir navegar a la vista detallada del destino respectivo.
 
 ## Forma de trabajo y entrega
 
-En esta entrega del proyecto deberán continuar su trabajo en el repositorio del Proyecto 1.3. Se les revisarán sus commits a dicho repositorio. Se evaluará el último commit realizado hasta el 10 de septiembre a las 23:59 hrs.
+En esta entrega del proyecto deberán continuar su trabajo en el repositorio del Proyecto 1.3 (frontend). Además, podrán realizar modificaciones al backend (Proyecto 1.1) para actualizar controladores o incluso el modelo de datos (crear migraciones). Lo importante es que todo endpoint expuesto por el backend se mantenga REST. Se les revisarán sus commits a dicho repositorio. Se evaluará el último commit realizado hasta el 10 de septiembre a las 23:59 hrs.
 
