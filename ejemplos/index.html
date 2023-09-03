@@ -1,0 +1,46 @@
+<!-- Esta página puede ser visualizada en el navegador web desde el sistema de archivos, sin necesidad de
+     accederla desde un servidor web. -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obtener Ubicación</title>
+</head>
+<body>
+    <button onclick="getLocation()">Obtener Ubicación</button>
+    <div id="locationDiv"></div>
+
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else { 
+                document.getElementById("locationDiv").innerHTML = "La Geolocalización no es soportada por este navegador.";
+            }
+        }
+
+        function showPosition(position) {
+            document.getElementById("locationDiv").innerHTML = "Latitud: " + position.coords.latitude + 
+            "<br>Longitud: " + position.coords.longitude;
+        }
+
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    document.getElementById("locationDiv").innerHTML = "El usuario no permitió la solicitud de Geolocalización."
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    document.getElementById("locationDiv").innerHTML = "La información de ubicación no está disponible."
+                    break;
+                case error.TIMEOUT:
+                    document.getElementById("locationDiv").innerHTML = "La solicitud para obtener la ubicación del usuario ha excedido el tiempo."
+                    break;
+                case error.UNKNOWN_ERROR:
+                    document.getElementById("locationDiv").innerHTML = "Ha ocurrido un error desconocido."
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
