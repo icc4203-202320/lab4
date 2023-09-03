@@ -76,24 +76,34 @@ Una vez que tienes tu acceso funcional a GCP, necesitas crear tus propias creden
 
 Importante: Existen buenas prácticas de seguridad para generar y usar API keys que aplican a GCP y a otras plataformas con APIs que puedan requerir en el futuro. Las buenas prácticas para uso de API keys con GCP las encuentran en [https://developers.google.com/maps/api-security-best-practices](https://developers.google.com/maps/api-security-best-practices).
 
-Dado que ustedes trabajarán en grupos compuestos por dos alumnos, y además los ayudantes requieren revisar su aplicación, es importante que las credenciales de la API las mantengan en un módulo de ES6+ que ustedes mismos genren con sus credenciales (p.ej., `secrets/keys.js`) y que puedan importar y usar en los componentes de la aplicación React que requieren la API de Google Maps. El módulo con credenciales lo deben agregar a `.gitignore`, pues es una práctica atentatoria contra la seguridad y bastante negligente/muy poco profesional dejar claves y llaves de APIs el su repositorio de código.
+Dado que ustedes trabajarán en grupos compuestos por dos alumnos, y además los ayudantes requieren revisar su aplicación, es importante que su API key de GCP la mantengan resguardada y no la suban a su repositorio. La práctica común para hacer esto es crear un archivo `.env` (en Unix, loa archivos cuyo nombre parte con `.` son archivos ocultos) en la raíz del proyecto de frontend de React, en donde puedan definir variables de entorno a las que la aplicación React puede acceder cuando es levantada en el servidor. El archivo `.env` debe ser agregado a `.gitignore`. La variable de entorno puede ser definida como `REACT_APP_GAPI_KEY`:
 
+```sh
+REACT_APP_GAPI_KEY=#insertar llave de GCP aquí
+```
+
+Es importante notar que toda variable de entorno accesible desde el código de React debe tener el prefijo `REACT_APP_` cuando se usa el módulo `create-react-app`, como lo es el caso en el proyecto de frontend. Luego, las variables son accesibles desde el código de React, siguiendo [los pasos descritos en esta guía](https://create-react-app.dev/docs/adding-custom-environment-variables/). En particular, para acceder a una variable de entorno definida en el código React, se usa el módulo `process.env`:
+
+```es6
+process.env.REACT_APP_NOT_SECRET_CODE
+```
+
+Se debe tener cuidado pues *esta no es una solución robusta desde el punto de vista de la seguridad*, pues el browser termina conociendo la API key y usándola en todas las peticiones. Mantener la API key completamente oculta del frontend requiere que el backend haga las peticiones a GCP, y que toda petición del frontend a GCP pase a través del backend. La explicación y solución a este problema [la encuentran aquí](https://stackoverflow.com/questions/48699820/how-do-i-hide-an-api-key-in-create-react-app).
+ 
 ### API de Google Maps
 
 El uso básico de la API de Google Maps está cubierto en la clase 5 del curso. Aquí te entregamos una serie de referencias útiles que puedes consultar para guiar tu trabajo:
 
 * [Conceptos de la API de Google Maps](https://developers.google.com/maps/documentation/javascript/basics): Explica sobre los tipos de mapas disponibles, los mapas y coordenadas, localización en los mapas, versionamiento de la API, parámetros en URL, mejores prácticas, y uso de métodos asíncronos a través de promesas de ES6+.
-* [Google Maps React](https://www.npmjs.com/package/google-maps-react): Módulo no oficial para integrar Google Maps con su aplicación React.
-
-
+* [Google Map React](https://www.npmjs.com/package/google-map-react): Módulo no oficial, vigente actualmente, para integrar Google Maps con su aplicación React. Documentación disponible en [sitio en GitHub](https://github.com/google-map-react/google-map-react).
 
 ## Objetivos de la Entrega del Proyecto 1.4
 
-1. Captar las coordenadas GPS a través de geolocation API en un componente React.
-2. Buscar estas coordenadas con Google Maps API y desplegarlas en el mapa.
-3. Permitir crear un placemark y guardarlo en la base de datos.
-4. Que un usuario pueda tener un conjunto de placemarks guardado (destinations de su viaje en TravelLog)
-5. Que al visualizar el viaje aparezca el mapa con todas las destinations, sus fechas, y acceso a los posts desde el mapa.
+1. En vista de creación de destino de la aplicación Travel Log, desplegar mapa de Google Maps.
+2. Permitir encontrar ubicación en mapa ingresando su nombre en un input de tipo texto.
+3. Permitir encontrar ubicación en mapa desde coordenadas GPS actuales mediante Geolocation API.
+4. Crear un "_placemark_" (marcador de lugar) en el mapa para el lugar encontrado. El marcador debe quedar asociado al destino en la aplicación Travel Log y guardado en la base de datos.
+
 
 ## Forma de trabajo y entrega
 
