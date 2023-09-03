@@ -59,14 +59,32 @@ Por último, es importante destacar que al usar la API estándar de Geolocation 
 
 ### API web estándar de geolocalización
 
-La API estándar de geolocalización está soportada en todos los [https://caniuse.com/?search=navigator.geolocation](navegadores web principales desde el período 2010-2012). Esta API sólo puede utilizarse en contextos seguros (contra orígenes servidos al navegador web por HTTPS). Los navegadores web tolerarán el uso de la API contra el dominio `localhost` sin requerir una conexión segura. Además, los navegadores web permiten utilizar la API desde páginas accedidas desde el sistema de archivos local (_schema_ `file://`). Junto con este enunciado encontrarás un ejemplo básico de uso de la API de geolocalización (`ejemplo1.html`). Si abres el ejemplo en el navegador web en tu PC o Mac, deberás dar al navegador web los permisos necesarios para que pueda obtener la ubicación; esto se configura tanto en el sistema operativo como en el navegador web. Además, es necesario que leas las siguientes guías de MDN referentes a este tema:
+La API estándar de geolocalización está soportada en todos los [navegadores web principales desde el período 2010-2012](https://caniuse.com/?search=navigator.geolocation). Esta API sólo puede utilizarse en contextos seguros (contra orígenes servidos al navegador web por HTTPS). Los navegadores web tolerarán el uso de la API contra el dominio `localhost` sin requerir una conexión segura. Además, los navegadores web permiten utilizar la API desde páginas accedidas desde el sistema de archivos local (_schema_ `file://`). Junto con este enunciado encontrarás un ejemplo básico de uso de la API de geolocalización (`ejemplo1.html`). Si abres el ejemplo en el navegador web en tu PC o Mac, deberás dar al navegador web los permisos necesarios para que pueda obtener la ubicación; esto se configura tanto en el sistema operativo como en el navegador web. Además, es necesario que leas las siguientes guías de MDN referentes a este tema:
 
-* [https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API](Geolocation API)
-* [https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API](Using the Geolocation API)
+* [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
+* [Using the Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API)
 
 ### API de Google Maps para uso de geolocalización con mapas
 
-La API de Google para utilización de mapas (Google Maps API) existe desde el año 2005, y actualmente va en su versión 3.5. Existen numerosas formas de obtener código cliente preparado para utilizar esta API, y crear componentes de React clientes de ella. 
+La API de Google para utilización de mapas (Google Maps API) existe desde el año 2005, y actualmente va en su versión 3.5. Existen numerosas formas de obtener código cliente preparado para utilizar esta API, y crear componentes de React clientes de ella. Lo primero para usar esta API es tener una cuenta de usuario de Google (@miuandes.cl sería apropiada) para usar Google Cloud Platform (GCP) ([console.cloud.google.com](console.cloud.google.com)) y activar el acceso a la API. El uso de la Maps API tiene una capa gratuita de 200 dólares, o cerca de 30000 despliegues de mapas. Sin embargo, para usar GCP y sus APIs requieres una tarjeta de crédito. La tarjeta de crédito la puedes obtener gratuitamente a través de [MACH de BCI](https://somosmach.com). Registrándote en MACH obtienes una cuenta vista gratuita en BCI, y además una tarjeta de crédito virtual VISA que puedes usar con GCP. 
+
+Una vez que tienes tu acceso funcional a GCP, necesitas crear tus propias credenciales para usar las APIs de Google, incluyendo Google Maps API. Los pasos para realizar esto los encuentras en las siguientes fuentes:
+
+* [https://developers.google.com/maps/documentation/javascript/cloud-setup](Set up your Google Cloud Project): Guía oficial de Google para comenzar a usar GCP.
+* [https://developers.google.com/maps/get-started](Getting started with Google Maps Platform): Guía oficial de Google para comenzar a usar la API de Google Maps.
+* [https://www.youtube.com/watch?v=eycjk3APuoI](How to Use Google Maps API (YouTube)): Este vídeo no oficial te mostrará cómo habilitar la API de Google Maps y cómo crear una API key para usarla.
+
+Importante: Existen buenas prácticas de seguridad para generar y usar API keys que aplican a GCP y a otras plataformas con APIs que puedan requerir en el futuro. Las buenas prácticas para uso de API keys con GCP las encuentran en [https://developers.google.com/maps/api-security-best-practices](https://developers.google.com/maps/api-security-best-practices).
+
+Dado que ustedes trabajarán en grupos compuestos por dos alumnos, y además los ayudantes requieren revisar su aplicación, es importante que las credenciales de la API las mantengan en un módulo de ES6+ que ustedes mismos genren con sus credenciales (p.ej., `secrets/keys.js`) y que puedan importar y usar en los componentes de la aplicación React que requieren la API de Google Maps. El módulo con credenciales lo deben agregar a `.gitignore`, pues es una práctica atentatoria contra la seguridad y bastante negligente/muy poco profesional dejar claves y llaves de APIs el su repositorio de código.
+
+### API de Google Maps
+
+El uso básico de la API de Google Maps está cubierto en la clase 5 del curso. Aquí te entregamos una serie de referencias útiles que puedes consultar para guiar tu trabajo:
+
+* [Conceptos de la API de Google Maps](https://developers.google.com/maps/documentation/javascript/basics): Explica sobre los tipos de mapas disponibles, los mapas y coordenadas, localización en los mapas, versionamiento de la API, parámetros en URL, mejores prácticas, y uso de métodos asíncronos a través de promesas de ES6+.
+* [Google Maps React](https://www.npmjs.com/package/google-maps-react): Módulo no oficial para integrar Google Maps con su aplicación React.
+
 
 
 ## Objetivos de la Entrega del Proyecto 1.4
